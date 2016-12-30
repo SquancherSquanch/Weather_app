@@ -82,6 +82,10 @@
     	margin: auto;
     }
 
+    header > i{
+    	font-size: 32px;
+    }
+
     #currentLoc{
     	cursor:pointer;
     }

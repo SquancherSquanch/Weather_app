@@ -10,7 +10,8 @@
 
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/weather-icons.min.css" />
 
 	</head>
 
@@ -30,7 +31,7 @@
 		<div id="loaded" class="container">
 			
 			<header>
-				<h1>Jakob Bullard's</h1>
+				<i class="fa fa-free-code-camp"></i>
 				<h1>Weather App</h1>
 			</header>
 			
@@ -39,6 +40,51 @@
 				<p>{{Data.temp}} &#176;<span class="temp" ng-click="Data.changeTemp()" title="Click to change to celsius/fahrenheit">{{Data.unit}}</span></p>
 				<p>{{Data.des}}</p>
 		  	</div>
+
+		  	<div class="text-center all-icon">
+	          <div class="wi wi-day-showers hide ">
+	            <div class="cloud"></div>
+	            <div class="sun">
+	              <div class="rays"></div>
+	            </div>
+	            <div class="rain"></div>
+	          </div>
+	          <div class="wi wi-thunderstorm hide thunderstom">
+	            <div class="cloud"></div>
+	            <div class="lightning">
+	              <div class="bolt"></div>
+	              <div class="bolt"></div>
+	            </div>
+	          </div>
+	          <div class="wi wi-cloud hide mist">
+	            <div class="cloud"></div>
+	            <div class="cloud"></div>
+	          </div>
+	          <div class="wi wi-cloud hide clouds">
+	            <div class="cloud"></div>
+	            <div class="cloud"></div>
+	          </div>
+	          <div class="wi wi-snow hide snow">
+	            <div class="cloud"></div>
+	            <div class="snow">
+	              <div class="flake"></div>
+	              <div class="flake"></div>
+	            </div>
+	          </div>
+	          <div class="wi wi-day-sunny hide clear">
+	            <div class="sun">
+	              <div class="rays"></div>
+	            </div>
+	          </div>
+	          <div class="wi wi-showers hide rain">
+	            <div class="cloud"></div>
+	            <div class="rain"></div>
+	          </div>
+	          <div class="wi wi-showers hide drizzle">
+	            <div class="cloud"></div>
+	            <div class="rain"></div>
+	          </div>
+        	</div>
 
 		</div>
 

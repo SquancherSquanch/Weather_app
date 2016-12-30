@@ -50,7 +50,7 @@ function togglePages(visibility) {
       }
 }
 
-function check_empty() {
+function validateField() {
   var regEx = /^[0-9a-zA-Z,]+$/;
     
   if (document.getElementById('cityPick').value == "") {
@@ -102,38 +102,54 @@ app.controller('MainCtrl', function($scope, WeatherApi) {
   function CurrentWeather(data) {
     $scope.Data.temp = Math.round(data.main.temp);
     $scope.Data.Cel = Math.round(data.main.temp);
+    var lastDes = $scope.Data.des;
     $scope.Data.des = data.weather[0].main;
     $scope.Data.Fah = Math.round( ($scope.Data.temp * 9)/5 + 32 );
-    return IconGen($scope.Data.des);
+    return IconGen(lastDes, $scope.Data.des);
   }
 
-  function IconGen(city) {
+  function chosenWeather(data) {
+    $scope.Data.Cel = Math.round(data.main.temp);
+    $scope.Data.Fah = Math.round( (data.main.temp * 9)/5 + 32 );
+    $scope.Data.temp = $scope.Data.unit === 'C' ? $scope.Data.Cel : $scope.Data.Fah;
+    var lastDes = $scope.Data.des;
+    $scope.Data.des = data.weather[0].main;
+    return IconGen(lastDes, $scope.Data.des);
+  }
+
+  function IconGen(lastCity, city) {
     var city = city.toLowerCase()
+    var lastCity = lastCity === undefined ? city : lastCity.toLowerCase();
     switch (city) {
-      case 'dizzle':
-        addIcon(city)
+      case 'drizzle':
+        addIcon(lastCity, city);
         break;
       case 'clouds':
-        addIcon(city)
+        addIcon(lastCity, city);
         break;
       case 'rain':
-        addIcon(city)
+        addIcon(lastCity, city);
         break;
       case 'snow':
-        addIcon(city)
+        addIcon(lastCity, city);
         break;
       case 'clear':
-        addIcon(city)
+        addIcon(lastCity, city);
         break;
       case 'thunderstom':
-        addIcon(city)
+        addIcon(lastCity, city);
+        break;
+      case 'mist':
+        addIcon(lastCity, city);
         break;
       default:
     $('div.clouds').removeClass('hide');
     }
   }
 
-  function addIcon(city) {
+  function addIcon(lastCity, city) {
+    console.log(lastCity + ", " + city);
+    $('div.' + lastCity).addClass('hide');
     $('div.' + city).removeClass('hide');
   }
   
@@ -146,7 +162,7 @@ app.controller('MainCtrl', function($scope, WeatherApi) {
     });
 
    $scope.Data.changeLoc = function(){
-    if (!check_empty()){
+    if (!validateField()){
       return;
     }
 
@@ -155,13 +171,15 @@ app.controller('MainCtrl', function($scope, WeatherApi) {
         newLoc[0] = newLoc[0].replace(newLoc[0][0],newLoc[0][0].toUpperCase());
         newLoc[1] = newLoc[1].toUpperCase();
 
+      var unit = $scope.Data.temp;
+
       city = newLoc[0] + ',' + newLoc[1];
       $scope.Data.city = newLoc[0];
       $scope.Data.country = newLoc[1];
       $(".city").text($scope.Data.city);
       togglePages('hide');
       WeatherApi.getCurrent(city).success(function(data) {
-        CurrentWeather(data);
+        chosenWeather(data);
       });
     });
   }
@@ -175,7 +193,7 @@ app.controller('MainCtrl', function($scope, WeatherApi) {
       //document.getElementById("cityPick").value = $scope.Data.city;
       $(".city").text($scope.Data.city);
       WeatherApi.getCurrent(city).success(function(data) {
-        CurrentWeather(data);
+        chosenWeather(data);
       });
     });
   }
