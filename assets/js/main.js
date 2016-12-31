@@ -123,23 +123,30 @@ app.controller('MainCtrl', function($scope, WeatherApi) {
     switch (city) {
       case 'drizzle':
         addIcon(lastCity, city);
+        document.getElementsByClassName("mainContainer")[0].style.backgroundImage = "url(images/drizzle.png)";
         break;
       case 'clouds':
         addIcon(lastCity, city);
+        document.getElementsByClassName("mainContainer")[0].style.backgroundImage = "url( images/cloudy.png)";
         break;
       case 'rain':
         addIcon(lastCity, city);
+        document.getElementsByClassName("mainContainer")[0].style.backgroundImage = "url( images/rain.png)";
         break;
       case 'snow':
         addIcon(lastCity, city);
+        document.getElementsByClassName("mainContainer")[0].style.backgroundImage = "url( images/snow.png)";
         break;
       case 'clear':
         addIcon(lastCity, city);
+        document.getElementsByClassName("mainContainer")[0].style.backgroundImage = "url( images/clear.png)";
         break;
       case 'thunderstom':
         addIcon(lastCity, city);
+        document.getElementsByClassName("mainContainer")[0].style.backgroundImage = "url( images/thunder.png)";
         break;
       case 'mist':
+      document.getElementsByClassName("mainContainer")[0].style.backgroundImage = "url( images/foggy.png)";
         addIcon(lastCity, city);
         break;
       default:

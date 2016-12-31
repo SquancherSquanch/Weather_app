@@ -82,8 +82,10 @@
     	margin: auto;
     }
 
-    header > i{
+    #fcci{
     	font-size: 32px;
+    	padding-top: 5%;
+    	margin: auto;
     }
 
     #currentLoc{
@@ -162,5 +164,11 @@
 		width: 100%;
 		bottom: 0;
 		margin: auto;
+	}
+
+	.all-icon{
+		font-size: 32px;
+    	padding-bottom: 5%;
+    	margin: auto;
 	}
 
